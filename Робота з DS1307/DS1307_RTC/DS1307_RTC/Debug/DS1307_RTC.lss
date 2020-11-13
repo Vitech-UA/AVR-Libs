@@ -1,0 +1,629 @@
+
+DS1307_RTC.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002fa  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          00000007  00800060  00800060  0000036e  2**0
+                  ALLOC
+  2 .stab         000006cc  00000000  00000000  00000370  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000085  00000000  00000000  00000a3c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_aranges 00000100  00000000  00000000  00000ac8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000829  00000000  00000000  00000bc8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000327  00000000  00000000  000013f1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000006ab  00000000  00000000  00001718  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000138  00000000  00000000  00001dc4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000001fc  00000000  00000000  00001efc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000125  00000000  00000000  000020f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	ea ef       	ldi	r30, 0xFA	; 250
+  3a:	f2 e0       	ldi	r31, 0x02	; 2
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a0 36       	cpi	r26, 0x60	; 96
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	10 e0       	ldi	r17, 0x00	; 0
+  4a:	a0 e6       	ldi	r26, 0x60	; 96
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a7 36       	cpi	r26, 0x67	; 103
+  54:	b1 07       	cpc	r27, r17
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	02 d0       	rcall	.+4      	; 0x5e <main>
+  5a:	4d c1       	rjmp	.+666    	; 0x2f6 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <main>:
+
+
+int main(void)
+
+{
+	I2C_Init();
+  5e:	f3 d0       	rcall	.+486    	; 0x246 <I2C_Init>
+	USART_ini();
+  60:	20 d1       	rcall	.+576    	; 0x2a2 <USART_ini>
+	
+	//Встановимо но ми час
+	I2C_StartCondition(); 
+  62:	f4 d0       	rcall	.+488    	; 0x24c <I2C_StartCondition>
+	USART_Transmit(TWSR);
+  64:	81 b1       	in	r24, 0x01	; 1
+  66:	25 d1       	rcall	.+586    	; 0x2b2 <USART_Transmit>
+	I2C_SendByte(0b11010000);//Передаємо адресу та біт запису (0)
+  68:	80 ed       	ldi	r24, 0xD0	; 208
+  6a:	f9 d0       	rcall	.+498    	; 0x25e <I2C_SendByte>
+	USART_Transmit(TWSR);
+  6c:	81 b1       	in	r24, 0x01	; 1
+  6e:	21 d1       	rcall	.+578    	; 0x2b2 <USART_Transmit>
+	
+	I2C_SendByte(0);//Переходимо в регістр з 0x00 адресою
+  70:	80 e0       	ldi	r24, 0x00	; 0
+  72:	f5 d0       	rcall	.+490    	; 0x25e <I2C_SendByte>
+	USART_Transmit(TWSR);
+  74:	81 b1       	in	r24, 0x01	; 1
+  76:	1d d1       	rcall	.+570    	; 0x2b2 <USART_Transmit>
+	I2C_SendByte(RTC_Convert_From_BinDec(0));//сек
+  78:	80 e0       	ldi	r24, 0x00	; 0
+  7a:	df d0       	rcall	.+446    	; 0x23a <RTC_Convert_From_BinDec>
+  7c:	f0 d0       	rcall	.+480    	; 0x25e <I2C_SendByte>
+	USART_Transmit(TWSR);
+  7e:	81 b1       	in	r24, 0x01	; 1
+  80:	18 d1       	rcall	.+560    	; 0x2b2 <USART_Transmit>
+	I2C_SendByte(RTC_Convert_From_BinDec(29));//хв
+  82:	8d e1       	ldi	r24, 0x1D	; 29
+  84:	da d0       	rcall	.+436    	; 0x23a <RTC_Convert_From_BinDec>
+  86:	eb d0       	rcall	.+470    	; 0x25e <I2C_SendByte>
+	USART_Transmit(TWSR);
+  88:	81 b1       	in	r24, 0x01	; 1
+  8a:	13 d1       	rcall	.+550    	; 0x2b2 <USART_Transmit>
+	I2C_SendByte(RTC_Convert_From_BinDec(20));//години
+  8c:	84 e1       	ldi	r24, 0x14	; 20
+  8e:	d5 d0       	rcall	.+426    	; 0x23a <RTC_Convert_From_BinDec>
+  90:	e6 d0       	rcall	.+460    	; 0x25e <I2C_SendByte>
+	USART_Transmit(TWSR);
+  92:	81 b1       	in	r24, 0x01	; 1
+  94:	0e d1       	rcall	.+540    	; 0x2b2 <USART_Transmit>
+	I2C_SendByte(RTC_Convert_From_BinDec(1));//день
+  96:	81 e0       	ldi	r24, 0x01	; 1
+  98:	d0 d0       	rcall	.+416    	; 0x23a <RTC_Convert_From_BinDec>
+  9a:	e1 d0       	rcall	.+450    	; 0x25e <I2C_SendByte>
+	USART_Transmit(TWSR);
+  9c:	81 b1       	in	r24, 0x01	; 1
+  9e:	09 d1       	rcall	.+530    	; 0x2b2 <USART_Transmit>
+	I2C_SendByte(RTC_Convert_From_BinDec(23));//Число
+  a0:	87 e1       	ldi	r24, 0x17	; 23
+  a2:	cb d0       	rcall	.+406    	; 0x23a <RTC_Convert_From_BinDec>
+  a4:	dc d0       	rcall	.+440    	; 0x25e <I2C_SendByte>
+	USART_Transmit(TWSR);
+  a6:	81 b1       	in	r24, 0x01	; 1
+  a8:	04 d1       	rcall	.+520    	; 0x2b2 <USART_Transmit>
+	I2C_SendByte(RTC_Convert_From_BinDec(10));//Місяць
+  aa:	8a e0       	ldi	r24, 0x0A	; 10
+  ac:	c6 d0       	rcall	.+396    	; 0x23a <RTC_Convert_From_BinDec>
+  ae:	d7 d0       	rcall	.+430    	; 0x25e <I2C_SendByte>
+	USART_Transmit(TWSR);
+  b0:	81 b1       	in	r24, 0x01	; 1
+  b2:	ff d0       	rcall	.+510    	; 0x2b2 <USART_Transmit>
+	I2C_SendByte(RTC_Convert_From_BinDec(17));//Рік
+  b4:	81 e1       	ldi	r24, 0x11	; 17
+  b6:	c1 d0       	rcall	.+386    	; 0x23a <RTC_Convert_From_BinDec>
+  b8:	d2 d0       	rcall	.+420    	; 0x25e <I2C_SendByte>
+	USART_Transmit(TWSR);
+  ba:	81 b1       	in	r24, 0x01	; 1
+  bc:	fa d0       	rcall	.+500    	; 0x2b2 <USART_Transmit>
+	
+	I2C_StopCondition();
+  be:	cc d0       	rcall	.+408    	; 0x258 <I2C_StopCondition>
+	   date = RTC_Convert_FromDec(date);
+	   month = RTC_Convert_FromDec(month);
+	   year = RTC_Convert_FromDec(year);
+	   
+	 
+	  USART_Transmit(date/10+0x30);//Преобразуем число в код числа
+  c0:	ca e0       	ldi	r28, 0x0A	; 10
+	
+	
+    while(1)
+    {
+	   
+       I2C_SendByteAdress(0,0b11010000);
+  c2:	80 e0       	ldi	r24, 0x00	; 0
+  c4:	60 ed       	ldi	r22, 0xD0	; 208
+  c6:	d2 d0       	rcall	.+420    	; 0x26c <I2C_SendByteAdress>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  c8:	8f ef       	ldi	r24, 0xFF	; 255
+  ca:	99 e6       	ldi	r25, 0x69	; 105
+  cc:	a8 e1       	ldi	r26, 0x18	; 24
+  ce:	81 50       	subi	r24, 0x01	; 1
+  d0:	90 40       	sbci	r25, 0x00	; 0
+  d2:	a0 40       	sbci	r26, 0x00	; 0
+  d4:	e1 f7       	brne	.-8      	; 0xce <main+0x70>
+  d6:	00 c0       	rjmp	.+0      	; 0xd8 <main+0x7a>
+  d8:	00 00       	nop
+	   _delay_ms(1000);
+	   I2C_StartCondition();
+  da:	b8 d0       	rcall	.+368    	; 0x24c <I2C_StartCondition>
+	   I2C_SendByte(0b11010001);
+  dc:	81 ed       	ldi	r24, 0xD1	; 209
+  de:	bf d0       	rcall	.+382    	; 0x25e <I2C_SendByte>
+	   sec = I2C_ReadByte();
+  e0:	d2 d0       	rcall	.+420    	; 0x286 <I2C_ReadByte>
+  e2:	80 93 64 00 	sts	0x0064, r24
+	   min = I2C_ReadByte();
+  e6:	cf d0       	rcall	.+414    	; 0x286 <I2C_ReadByte>
+  e8:	80 93 62 00 	sts	0x0062, r24
+	   hour = I2C_ReadByte();
+  ec:	cc d0       	rcall	.+408    	; 0x286 <I2C_ReadByte>
+  ee:	80 93 61 00 	sts	0x0061, r24
+	   day = I2C_ReadByte();
+  f2:	c9 d0       	rcall	.+402    	; 0x286 <I2C_ReadByte>
+  f4:	80 93 65 00 	sts	0x0065, r24
+	   date = I2C_ReadByte();
+  f8:	c6 d0       	rcall	.+396    	; 0x286 <I2C_ReadByte>
+  fa:	80 93 66 00 	sts	0x0066, r24
+	  month = I2C_ReadByte();
+  fe:	c3 d0       	rcall	.+390    	; 0x286 <I2C_ReadByte>
+ 100:	80 93 60 00 	sts	0x0060, r24
+	   year = I2C_ReadLastByte();
+ 104:	c7 d0       	rcall	.+398    	; 0x294 <I2C_ReadLastByte>
+ 106:	80 93 63 00 	sts	0x0063, r24
+	   I2C_StopCondition();
+ 10a:	a6 d0       	rcall	.+332    	; 0x258 <I2C_StopCondition>
+	   
+	   sec = RTC_Convert_FromDec(sec);
+ 10c:	80 91 64 00 	lds	r24, 0x0064
+ 110:	89 d0       	rcall	.+274    	; 0x224 <RTC_Convert_FromDec>
+ 112:	80 93 64 00 	sts	0x0064, r24
+	   min = RTC_Convert_FromDec(min);
+ 116:	80 91 62 00 	lds	r24, 0x0062
+ 11a:	84 d0       	rcall	.+264    	; 0x224 <RTC_Convert_FromDec>
+ 11c:	80 93 62 00 	sts	0x0062, r24
+	   hour = RTC_Convert_FromDec(hour);
+ 120:	80 91 61 00 	lds	r24, 0x0061
+ 124:	7f d0       	rcall	.+254    	; 0x224 <RTC_Convert_FromDec>
+ 126:	80 93 61 00 	sts	0x0061, r24
+	   day = RTC_Convert_FromDec(day);
+ 12a:	80 91 65 00 	lds	r24, 0x0065
+ 12e:	7a d0       	rcall	.+244    	; 0x224 <RTC_Convert_FromDec>
+ 130:	80 93 65 00 	sts	0x0065, r24
+	   date = RTC_Convert_FromDec(date);
+ 134:	80 91 66 00 	lds	r24, 0x0066
+ 138:	75 d0       	rcall	.+234    	; 0x224 <RTC_Convert_FromDec>
+ 13a:	80 93 66 00 	sts	0x0066, r24
+	   month = RTC_Convert_FromDec(month);
+ 13e:	80 91 60 00 	lds	r24, 0x0060
+ 142:	70 d0       	rcall	.+224    	; 0x224 <RTC_Convert_FromDec>
+ 144:	80 93 60 00 	sts	0x0060, r24
+	   year = RTC_Convert_FromDec(year);
+ 148:	80 91 63 00 	lds	r24, 0x0063
+ 14c:	6b d0       	rcall	.+214    	; 0x224 <RTC_Convert_FromDec>
+ 14e:	80 93 63 00 	sts	0x0063, r24
+	   
+	 
+	  USART_Transmit(date/10+0x30);//Преобразуем число в код числа
+ 152:	80 91 66 00 	lds	r24, 0x0066
+ 156:	6c 2f       	mov	r22, r28
+ 158:	c2 d0       	rcall	.+388    	; 0x2de <__udivmodqi4>
+ 15a:	80 5d       	subi	r24, 0xD0	; 208
+ 15c:	aa d0       	rcall	.+340    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(date%10+0x30);//Преобразуем число в код числа
+ 15e:	80 91 66 00 	lds	r24, 0x0066
+ 162:	6c 2f       	mov	r22, r28
+ 164:	bc d0       	rcall	.+376    	; 0x2de <__udivmodqi4>
+ 166:	89 2f       	mov	r24, r25
+ 168:	80 5d       	subi	r24, 0xD0	; 208
+ 16a:	a3 d0       	rcall	.+326    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit('.');
+ 16c:	8e e2       	ldi	r24, 0x2E	; 46
+ 16e:	a1 d0       	rcall	.+322    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(month/10+0x30);//Преобразуем число в код числа
+ 170:	80 91 60 00 	lds	r24, 0x0060
+ 174:	6c 2f       	mov	r22, r28
+ 176:	b3 d0       	rcall	.+358    	; 0x2de <__udivmodqi4>
+ 178:	80 5d       	subi	r24, 0xD0	; 208
+ 17a:	9b d0       	rcall	.+310    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(month%10+0x30);//Преобразуем число в код числа
+ 17c:	80 91 60 00 	lds	r24, 0x0060
+ 180:	6c 2f       	mov	r22, r28
+ 182:	ad d0       	rcall	.+346    	; 0x2de <__udivmodqi4>
+ 184:	89 2f       	mov	r24, r25
+ 186:	80 5d       	subi	r24, 0xD0	; 208
+ 188:	94 d0       	rcall	.+296    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit('.');
+ 18a:	8e e2       	ldi	r24, 0x2E	; 46
+ 18c:	92 d0       	rcall	.+292    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(year/10+0x30);//Преобразуем число в код числа
+ 18e:	80 91 63 00 	lds	r24, 0x0063
+ 192:	6c 2f       	mov	r22, r28
+ 194:	a4 d0       	rcall	.+328    	; 0x2de <__udivmodqi4>
+ 196:	80 5d       	subi	r24, 0xD0	; 208
+ 198:	8c d0       	rcall	.+280    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(year%10+0x30);//Преобразуем число в код числа
+ 19a:	80 91 63 00 	lds	r24, 0x0063
+ 19e:	6c 2f       	mov	r22, r28
+ 1a0:	9e d0       	rcall	.+316    	; 0x2de <__udivmodqi4>
+ 1a2:	89 2f       	mov	r24, r25
+ 1a4:	80 5d       	subi	r24, 0xD0	; 208
+ 1a6:	85 d0       	rcall	.+266    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(' ');
+ 1a8:	80 e2       	ldi	r24, 0x20	; 32
+ 1aa:	83 d0       	rcall	.+262    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit('-');
+ 1ac:	8d e2       	ldi	r24, 0x2D	; 45
+ 1ae:	81 d0       	rcall	.+258    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(day+0x30);//Преобразуем число в код числа
+ 1b0:	80 91 65 00 	lds	r24, 0x0065
+ 1b4:	80 5d       	subi	r24, 0xD0	; 208
+ 1b6:	7d d0       	rcall	.+250    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit('-');
+ 1b8:	8d e2       	ldi	r24, 0x2D	; 45
+ 1ba:	7b d0       	rcall	.+246    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(' ');
+ 1bc:	80 e2       	ldi	r24, 0x20	; 32
+ 1be:	79 d0       	rcall	.+242    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(' ');
+ 1c0:	80 e2       	ldi	r24, 0x20	; 32
+ 1c2:	77 d0       	rcall	.+238    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(hour/10+0x30);//Преобразуем число в код числа
+ 1c4:	80 91 61 00 	lds	r24, 0x0061
+ 1c8:	6c 2f       	mov	r22, r28
+ 1ca:	89 d0       	rcall	.+274    	; 0x2de <__udivmodqi4>
+ 1cc:	80 5d       	subi	r24, 0xD0	; 208
+ 1ce:	71 d0       	rcall	.+226    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(hour%10+0x30);//Преобразуем число в код числа
+ 1d0:	80 91 61 00 	lds	r24, 0x0061
+ 1d4:	6c 2f       	mov	r22, r28
+ 1d6:	83 d0       	rcall	.+262    	; 0x2de <__udivmodqi4>
+ 1d8:	89 2f       	mov	r24, r25
+ 1da:	80 5d       	subi	r24, 0xD0	; 208
+ 1dc:	6a d0       	rcall	.+212    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(':');
+ 1de:	8a e3       	ldi	r24, 0x3A	; 58
+ 1e0:	68 d0       	rcall	.+208    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(min/10+0x30);//Преобразуем число в код числа
+ 1e2:	80 91 62 00 	lds	r24, 0x0062
+ 1e6:	6c 2f       	mov	r22, r28
+ 1e8:	7a d0       	rcall	.+244    	; 0x2de <__udivmodqi4>
+ 1ea:	80 5d       	subi	r24, 0xD0	; 208
+ 1ec:	62 d0       	rcall	.+196    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(min%10+0x30);//Преобразуем число в код числа
+ 1ee:	80 91 62 00 	lds	r24, 0x0062
+ 1f2:	6c 2f       	mov	r22, r28
+ 1f4:	74 d0       	rcall	.+232    	; 0x2de <__udivmodqi4>
+ 1f6:	89 2f       	mov	r24, r25
+ 1f8:	80 5d       	subi	r24, 0xD0	; 208
+ 1fa:	5b d0       	rcall	.+182    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(':');
+ 1fc:	8a e3       	ldi	r24, 0x3A	; 58
+ 1fe:	59 d0       	rcall	.+178    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(sec/10+0x30);//Преобразуем число в код числа
+ 200:	80 91 64 00 	lds	r24, 0x0064
+ 204:	6c 2f       	mov	r22, r28
+ 206:	6b d0       	rcall	.+214    	; 0x2de <__udivmodqi4>
+ 208:	80 5d       	subi	r24, 0xD0	; 208
+ 20a:	53 d0       	rcall	.+166    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(sec%10+0x30);//Преобразуем число в код числа
+ 20c:	80 91 64 00 	lds	r24, 0x0064
+ 210:	6c 2f       	mov	r22, r28
+ 212:	65 d0       	rcall	.+202    	; 0x2de <__udivmodqi4>
+ 214:	89 2f       	mov	r24, r25
+ 216:	80 5d       	subi	r24, 0xD0	; 208
+ 218:	4c d0       	rcall	.+152    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(0x0d);//переход в начало строки
+ 21a:	8d e0       	ldi	r24, 0x0D	; 13
+ 21c:	4a d0       	rcall	.+148    	; 0x2b2 <USART_Transmit>
+	  USART_Transmit(0x0a);//перевод каретки
+ 21e:	8c 2f       	mov	r24, r28
+ 220:	48 d0       	rcall	.+144    	; 0x2b2 <USART_Transmit>
+ 222:	4f cf       	rjmp	.-354    	; 0xc2 <main+0x64>
+
+00000224 <RTC_Convert_FromDec>:
+﻿#include "RTC.h"
+
+unsigned char RTC_Convert_FromDec(unsigned char c){
+	
+	
+	unsigned char ch = ((c>>4)*10+(0b00001111&c));
+ 224:	98 2f       	mov	r25, r24
+ 226:	92 95       	swap	r25
+ 228:	9f 70       	andi	r25, 0x0F	; 15
+ 22a:	99 0f       	add	r25, r25
+ 22c:	29 2f       	mov	r18, r25
+ 22e:	22 0f       	add	r18, r18
+ 230:	22 0f       	add	r18, r18
+ 232:	92 0f       	add	r25, r18
+ 234:	8f 70       	andi	r24, 0x0F	; 15
+	return ch;
+}
+ 236:	89 0f       	add	r24, r25
+ 238:	08 95       	ret
+
+0000023a <RTC_Convert_From_BinDec>:
+
+unsigned char RTC_Convert_From_BinDec(unsigned char c){
+	
+	
+	 unsigned char ch = ((c/10)<<4)|(c%10);
+ 23a:	6a e0       	ldi	r22, 0x0A	; 10
+ 23c:	50 d0       	rcall	.+160    	; 0x2de <__udivmodqi4>
+ 23e:	82 95       	swap	r24
+ 240:	80 7f       	andi	r24, 0xF0	; 240
+	 return ch;
+	
+ 242:	89 2b       	or	r24, r25
+ 244:	08 95       	ret
+
+00000246 <I2C_Init>:
+﻿#include "TWI.h"
+
+void I2C_Init(){
+	TWBR = 0x20; // Швидкість передачі (При 8 Мгц камня на шині буде 100 кГц)
+ 246:	80 e2       	ldi	r24, 0x20	; 32
+ 248:	80 b9       	out	0x00, r24	; 0
+}
+ 24a:	08 95       	ret
+
+0000024c <I2C_StartCondition>:
+
+void I2C_StartCondition(void){
+	
+	TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
+ 24c:	84 ea       	ldi	r24, 0xA4	; 164
+ 24e:	86 bf       	out	0x36, r24	; 54
+	while(!(TWCR & (1<<TWINT)));
+ 250:	06 b6       	in	r0, 0x36	; 54
+ 252:	07 fe       	sbrs	r0, 7
+ 254:	fd cf       	rjmp	.-6      	; 0x250 <I2C_StartCondition+0x4>
+}
+ 256:	08 95       	ret
+
+00000258 <I2C_StopCondition>:
+
+void I2C_StopCondition(void){
+	
+	TWCR = (1<<TWINT)|(1<<TWSTO)|(1<<TWEN);
+ 258:	84 e9       	ldi	r24, 0x94	; 148
+ 25a:	86 bf       	out	0x36, r24	; 54
+}
+ 25c:	08 95       	ret
+
+0000025e <I2C_SendByte>:
+
+void I2C_SendByte(unsigned char c){
+	TWDR = c;//запишем байт в регистр данных
+ 25e:	83 b9       	out	0x03, r24	; 3
+	TWCR = (1<<TWINT)|(1<<TWEN);//включим передачу байта
+ 260:	84 e8       	ldi	r24, 0x84	; 132
+ 262:	86 bf       	out	0x36, r24	; 54
+	while (!(TWCR & (1<<TWINT)));//подождем пока установится TWIN
+ 264:	06 b6       	in	r0, 0x36	; 54
+ 266:	07 fe       	sbrs	r0, 7
+ 268:	fd cf       	rjmp	.-6      	; 0x264 <I2C_SendByte+0x6>
+}
+ 26a:	08 95       	ret
+
+0000026c <I2C_SendByteAdress>:
+
+void I2C_SendByteAdress(unsigned char c, unsigned char addr){
+ 26c:	cf 93       	push	r28
+ 26e:	df 93       	push	r29
+ 270:	c8 2f       	mov	r28, r24
+ 272:	d6 2f       	mov	r29, r22
+	
+	 I2C_StartCondition(); // Отправим условие START
+ 274:	eb df       	rcall	.-42     	; 0x24c <I2C_StartCondition>
+	 I2C_SendByte(addr); // Отправим в шину адрес устройства + бит чтения-записи
+ 276:	8d 2f       	mov	r24, r29
+ 278:	f2 df       	rcall	.-28     	; 0x25e <I2C_SendByte>
+	 I2C_SendByte(c);// Отправим байт данных
+ 27a:	8c 2f       	mov	r24, r28
+ 27c:	f0 df       	rcall	.-32     	; 0x25e <I2C_SendByte>
+	 I2C_StopCondition();// Отправим условие STOP
+ 27e:	ec df       	rcall	.-40     	; 0x258 <I2C_StopCondition>
+}
+ 280:	df 91       	pop	r29
+ 282:	cf 91       	pop	r28
+ 284:	08 95       	ret
+
+00000286 <I2C_ReadByte>:
+
+unsigned char I2C_ReadByte(void)
+{
+	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWEA);
+ 286:	84 ec       	ldi	r24, 0xC4	; 196
+ 288:	86 bf       	out	0x36, r24	; 54
+	while (!(TWCR & (1<<TWINT)));//ожидание установки бита TWIN
+ 28a:	06 b6       	in	r0, 0x36	; 54
+ 28c:	07 fe       	sbrs	r0, 7
+ 28e:	fd cf       	rjmp	.-6      	; 0x28a <I2C_ReadByte+0x4>
+	return TWDR;//читаем регистр данных
+ 290:	83 b1       	in	r24, 0x03	; 3
+}
+ 292:	08 95       	ret
+
+00000294 <I2C_ReadLastByte>:
+
+unsigned char I2C_ReadLastByte(void)
+{
+	TWCR = (1<<TWINT)|(1<<TWEN);
+ 294:	84 e8       	ldi	r24, 0x84	; 132
+ 296:	86 bf       	out	0x36, r24	; 54
+	while (!(TWCR & (1<<TWINT)));//ожидание установки бита TWIN
+ 298:	06 b6       	in	r0, 0x36	; 54
+ 29a:	07 fe       	sbrs	r0, 7
+ 29c:	fd cf       	rjmp	.-6      	; 0x298 <I2C_ReadLastByte+0x4>
+	return TWDR;//читаем регистр данных
+ 29e:	83 b1       	in	r24, 0x03	; 3
+ 2a0:	08 95       	ret
+
+000002a2 <USART_ini>:
+  UBRRL = (unsigned char) speed;
+  UCSRB = (1<<RXEN)|(1<<TXEN); // Вмикаємо прийом та передачу
+  UCSRB |=(0<<RXCIE); // Дозвіл переривання
+  UCSRA |=(1<<U2X);// Ввімкнення подвоєння частоти
+  UCSRC = (1<<URSEL)|(1<<USBS)|(1<<UCSZ1)|(1<<UCSZ0)|(0<<UPM1)|(0<<UPM0); //Звертаємось до UCSRC */
+  UBRRH = 0;
+ 2a2:	10 bc       	out	0x20, r1	; 32
+  UBRRL = 51; //скорость обмена 9600 бод
+ 2a4:	83 e3       	ldi	r24, 0x33	; 51
+ 2a6:	89 b9       	out	0x09, r24	; 9
+  //разр. прерыв при приеме, разр приема, разр передачи.
+  UCSRB = (1<<RXCIE)|(1<<RXEN)|(1<<TXEN);
+ 2a8:	88 e9       	ldi	r24, 0x98	; 152
+ 2aa:	8a b9       	out	0x0a, r24	; 10
+  //обращаемся к регистру UCSRS, размер слова – 8 бит
+  UCSRC = (1<<URSEL)|(1<<UCSZ1)|(1<<UCSZ0)|(1<<UPM0)|(1<<UPM1);
+ 2ac:	86 eb       	ldi	r24, 0xB6	; 182
+ 2ae:	80 bd       	out	0x20, r24	; 32
+  
+  
+ 
+
+  }
+ 2b0:	08 95       	ret
+
+000002b2 <USART_Transmit>:
+void USART_Transmit (unsigned char data){
+    
+	while(!(UCSRA&(1<<UDRE)));
+ 2b2:	5d 9b       	sbis	0x0b, 5	; 11
+ 2b4:	fe cf       	rjmp	.-4      	; 0x2b2 <USART_Transmit>
+    UDR=data;
+ 2b6:	8c b9       	out	0x0c, r24	; 12
+    
+   	
+}	
+ 2b8:	08 95       	ret
+
+000002ba <usart_putline>:
+void usart_putline(char *buffer)
+{
+ 2ba:	cf 93       	push	r28
+ 2bc:	df 93       	push	r29
+ 2be:	ec 01       	movw	r28, r24
+	while (*buffer!=0)
+ 2c0:	88 81       	ld	r24, Y
+ 2c2:	88 23       	and	r24, r24
+ 2c4:	29 f0       	breq	.+10     	; 0x2d0 <usart_putline+0x16>
+	while(!(UCSRA&(1<<UDRE)));
+    UDR=data;
+    
+   	
+}	
+void usart_putline(char *buffer)
+ 2c6:	21 96       	adiw	r28, 0x01	; 1
+{
+	while (*buffer!=0)
+	{
+		USART_Transmit(*buffer);
+ 2c8:	f4 df       	rcall	.-24     	; 0x2b2 <USART_Transmit>
+    
+   	
+}	
+void usart_putline(char *buffer)
+{
+	while (*buffer!=0)
+ 2ca:	89 91       	ld	r24, Y+
+ 2cc:	88 23       	and	r24, r24
+ 2ce:	e1 f7       	brne	.-8      	; 0x2c8 <usart_putline+0xe>
+		USART_Transmit(*buffer);
+		buffer++;
+	}
+
+	// Завершение строки символом возврата каретки, т.е. 0x0D и 0x0A
+	USART_Transmit(13);
+ 2d0:	8d e0       	ldi	r24, 0x0D	; 13
+ 2d2:	ef df       	rcall	.-34     	; 0x2b2 <USART_Transmit>
+	USART_Transmit(10);
+ 2d4:	8a e0       	ldi	r24, 0x0A	; 10
+ 2d6:	ed df       	rcall	.-38     	; 0x2b2 <USART_Transmit>
+}
+ 2d8:	df 91       	pop	r29
+ 2da:	cf 91       	pop	r28
+ 2dc:	08 95       	ret
+
+000002de <__udivmodqi4>:
+ 2de:	99 1b       	sub	r25, r25
+ 2e0:	79 e0       	ldi	r23, 0x09	; 9
+ 2e2:	04 c0       	rjmp	.+8      	; 0x2ec <__udivmodqi4_ep>
+
+000002e4 <__udivmodqi4_loop>:
+ 2e4:	99 1f       	adc	r25, r25
+ 2e6:	96 17       	cp	r25, r22
+ 2e8:	08 f0       	brcs	.+2      	; 0x2ec <__udivmodqi4_ep>
+ 2ea:	96 1b       	sub	r25, r22
+
+000002ec <__udivmodqi4_ep>:
+ 2ec:	88 1f       	adc	r24, r24
+ 2ee:	7a 95       	dec	r23
+ 2f0:	c9 f7       	brne	.-14     	; 0x2e4 <__udivmodqi4_loop>
+ 2f2:	80 95       	com	r24
+ 2f4:	08 95       	ret
+
+000002f6 <_exit>:
+ 2f6:	f8 94       	cli
+
+000002f8 <__stop_program>:
+ 2f8:	ff cf       	rjmp	.-2      	; 0x2f8 <__stop_program>

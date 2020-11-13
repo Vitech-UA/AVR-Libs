@@ -1,0 +1,162 @@
+
+Timer1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000a6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          00000001  00800060  00800060  0000011a  2**0
+                  ALLOC
+  2 .stab         000006cc  00000000  00000000  0000011c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000085  00000000  00000000  000007e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_aranges 00000080  00000000  00000000  00000870  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000035a  00000000  00000000  000008f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000000c5  00000000  00000000  00000c4a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000027f  00000000  00000000  00000d0f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000054  00000000  00000000  00000f90  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000000bb  00000000  00000000  00000fe4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000003c  00000000  00000000  0000109f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	36 c0       	rjmp	.+108    	; 0x7a <__vector_6>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e6 ea       	ldi	r30, 0xA6	; 166
+  3a:	f0 e0       	ldi	r31, 0x00	; 0
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a0 36       	cpi	r26, 0x60	; 96
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	10 e0       	ldi	r17, 0x00	; 0
+  4a:	a0 e6       	ldi	r26, 0x60	; 96
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a1 36       	cpi	r26, 0x61	; 97
+  54:	b1 07       	cpc	r27, r17
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	1f d0       	rcall	.+62     	; 0x98 <main>
+  5a:	23 c0       	rjmp	.+70     	; 0xa2 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <Timer_Init>:
+
+unsigned char i;
+
+void Timer_Init(void)
+{
+	TCCR1B |= (1<<WGM12); // устанавливаем режим СТС (сброс по совпадению)
+  5e:	8e b5       	in	r24, 0x2e	; 46
+  60:	88 60       	ori	r24, 0x08	; 8
+  62:	8e bd       	out	0x2e, r24	; 46
+	TIMSK |= (1<<OCIE1A); //устанавливаем бит разрешения прерывания 1ого счетчика по совпадению с OCR1A(H и L)
+  64:	89 b7       	in	r24, 0x39	; 57
+  66:	80 61       	ori	r24, 0x10	; 16
+  68:	89 bf       	out	0x39, r24	; 57
+	
+	OCR1AH = 0x08; //записываем в регистр число для сравнения
+  6a:	88 e0       	ldi	r24, 0x08	; 8
+  6c:	8b bd       	out	0x2b, r24	; 43
+	OCR1AL = 0x3D;
+  6e:	8d e3       	ldi	r24, 0x3D	; 61
+  70:	8a bd       	out	0x2a, r24	; 42
+	
+	TCCR1B |= (1<<CS12);//установим делитель.
+  72:	8e b5       	in	r24, 0x2e	; 46
+  74:	84 60       	ori	r24, 0x04	; 4
+  76:	8e bd       	out	0x2e, r24	; 46
+}
+  78:	08 95       	ret
+
+0000007a <__vector_6>:
+
+ISR (TIMER1_COMPA_vect)
+{
+  7a:	1f 92       	push	r1
+  7c:	0f 92       	push	r0
+  7e:	0f b6       	in	r0, 0x3f	; 63
+  80:	0f 92       	push	r0
+  82:	11 24       	eor	r1, r1
+  84:	8f 93       	push	r24
+	PORTC = ~PORTC;
+  86:	85 b3       	in	r24, 0x15	; 21
+  88:	80 95       	com	r24
+  8a:	85 bb       	out	0x15, r24	; 21
+}
+  8c:	8f 91       	pop	r24
+  8e:	0f 90       	pop	r0
+  90:	0f be       	out	0x3f, r0	; 63
+  92:	0f 90       	pop	r0
+  94:	1f 90       	pop	r1
+  96:	18 95       	reti
+
+00000098 <main>:
+
+int main(void)
+{
+	DDRC=0xFF;
+  98:	8f ef       	ldi	r24, 0xFF	; 255
+  9a:	84 bb       	out	0x14, r24	; 20
+	
+	
+	Timer_Init();
+  9c:	e0 df       	rcall	.-64     	; 0x5e <Timer_Init>
+	sei();
+  9e:	78 94       	sei
+  a0:	ff cf       	rjmp	.-2      	; 0xa0 <main+0x8>
+
+000000a2 <_exit>:
+  a2:	f8 94       	cli
+
+000000a4 <__stop_program>:
+  a4:	ff cf       	rjmp	.-2      	; 0xa4 <__stop_program>
